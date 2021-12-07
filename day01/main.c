@@ -14,9 +14,11 @@ int main(int argc, char **argv) {
     fclose(input);
 }
 
+// Given an array of integers find how often `a[n] > a[n+1]` holds true
 void problem1(FILE *input) {
     int increments = 0;
 
+    // only store 
     int cur;
     int prev;
     getint(input, &prev);
@@ -26,20 +28,22 @@ void problem1(FILE *input) {
             increments += 1;
         }
 
-        int tmp = prev;
+        
         prev = cur;
-        cur = tmp;
     }
 
     printf("%d", increments);
 }
 
+// Given a sliding window with the size of 3 find how often the sum of all elements in the window
+// is larger than that of the previous window
 void problem2(FILE *input) {
     int increments = 0;
 
     int cur;
     int prev = 0;
 
+    // The window is an array of 3
     int window[3];
     getint(input, window);
     getint(input, window+1);
@@ -53,11 +57,11 @@ void problem2(FILE *input) {
         window[0] = window[1];
         window[1] = window[2];
 
-        int tmp = prev;
         prev = cur;
-        cur = tmp;
     }
 
+    // subtract 1 from the increments because the first one window is seen as an increment to the
+    // last one even though there is no increment with the first window (no predecessor is given)
     printf("%d", increments - 1);
 }
 
